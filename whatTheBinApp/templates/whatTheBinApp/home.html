@@ -9,6 +9,15 @@
     <title>Document</title>
 </head>
 <body>
-    Wowd
+    {% csrf_token %}
+    <div id="mainDiv">
+        <div id="cameraContainer">
+            <video id="cameraBox" autoplay></video>
+            <canvas id="pictureBox" ></canvas>
+        </div>
+        <button id="captureButton">Capture</button>
+
+    </div>
+
 </body>
 </html>

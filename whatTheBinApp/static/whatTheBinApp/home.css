@@ -1,0 +1,21 @@
+#cameraBox, #pictureBox {
+    width: 25rem;
+    transform:rotateY(180deg);
+    border: 2px solid darkgreen;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 0px darkgreen inset, 0 0 2px 0px darkgreen;
+}
+
+#cameraContainer {
+    text-align: center;
+}
+
+#mainDiv {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 40rem;
+    height: 40rem;
+    border: 1px solid black;
+    transform: translate(-50%, -50%);
+}
