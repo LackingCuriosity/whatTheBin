@@ -5,6 +5,7 @@ from google.genai import types
 import json
 from pydantic import BaseModel
 
+#class to format API response
 class Format(BaseModel):
     isRecyclable: bool
     isCompostable: bool
@@ -15,14 +16,19 @@ def home(request):
     return render(request, "whatTheBinApp/home.html")
 
 def api(request):
+    #ensure POST request
     if request.method != "POST":
         return HttpResponseBadRequest("Bad request")
     
+    #get, and ensure image.
     image = json.loads(request.body).get('image')
     if not image:
         return HttpResponseBadRequest("No Image Provided")
+    
+    #only base64 part needed
     image = image[len("data:image/png;base64,"):]
 
+    #send API request to Gemini servers
     client = genai.Client()
     response = client.models.generate_content(
         model='gemini-2.5-flash',
@@ -44,7 +50,8 @@ def api(request):
         }
 
     )
-    print(response.text)
+
+    #return gemini API request to 
     return JsonResponse(json.loads(response.text))
     
     

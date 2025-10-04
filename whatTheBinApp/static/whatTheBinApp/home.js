@@ -1,29 +1,43 @@
 document.addEventListener("DOMContentLoaded", e => {
+    // csrf for async POST request
+    csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+
+    // hide inital picture box
     pictureBox = document.getElementById("pictureBox") 
     pictureBox.style.display = "none"
-    csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+
+    // get user webcam
     navigator.mediaDevices.getUserMedia({video: true})
     .then((stream) => {
-        const cameraDiv = document.getElementById("cameraBox");
+        // cameraDiv
+        cameraDiv = document.getElementById("cameraBox");
         cameraDiv.srcObject = stream;
-
-        captureButton = document.getElementById("captureButton")
+        
+        //picture div context
         context = pictureBox.getContext('2d')
+
+        // get subDiv elements
         isRecyclableDiv = document.getElementById("isRecyclable")
         isCompostableDiv = document.getElementById("isCompostable")
         isLandfillDiv = document.getElementById("isLandfill")
         descriptionDiv = document.getElementById("description")
+
+        // capture button on click
+        captureButton = document.getElementById("captureButton")
         captureButton.addEventListener('click', e => {
+            //start loading animation
             for (loadingDiv of document.getElementsByClassName("loadingDiv")) {
                 loadingDiv.style.opacity = '100'
             }
+
+            //show image
             pictureBox.style.display = "block"
             pictureBox.width = cameraDiv.videoWidth;
             pictureBox.height = cameraDiv.videoHeight;
-
             context.drawImage(cameraDiv, 0, 0, pictureBox.width, pictureBox.height)
+
+            //send picture to back-end servers
             dataURL = pictureBox.toDataURL('image/png', 0.01)
-            
             fetch("/api", {
                 method: 'POST',
                 headers : {
@@ -33,6 +47,8 @@ document.addEventListener("DOMContentLoaded", e => {
             })
             .then (data => data.json())
             .then (data => {
+
+                //update User information divs
                 if (data["isRecyclable"]) {
                     isRecyclableDiv.style.color = "green"
                     isRecyclableDiv.innerHTML = "Recycling Bin: ✅"
@@ -62,6 +78,7 @@ document.addEventListener("DOMContentLoaded", e => {
 
                 descriptionDiv.innerHTML = data["description"]
 
+                // hide loading animation
                 for (element of document.getElementsByClassName("loadingDiv")) {
                     element.style.opacity = '0'
             }
