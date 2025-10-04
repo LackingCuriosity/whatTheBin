@@ -9,7 +9,7 @@ class Format(BaseModel):
     isRecyclable: bool
     isCompostable: bool
     isLandfill: bool
-    desciption: str
+    description: str
 
 def home(request):
     return render(request, "whatTheBinApp/home.html")
@@ -33,10 +33,10 @@ def api(request):
         ),
         '''The User will be holding something towards the camera. 
         Please identify if it is compostable/recyclable/landfill. If not accepted in standard bins, it is landfill.
-        Remember recylable items stained with food contents are either landfill or compost, and other exceptions.
+        Remember recylable items stained with food contents/liquids are either landfill or compost, and other exceptions.
         If there is a way to maximize the amount composted or recycled, tell the user in the description. If there is nothing else
         the user need to do to maxime the amount that is recyclable or compostable, then the description can simply state "this is a <item>.
-        If the user does not seem to be holding anything, then return all false, and "unknown" for the desicription.'''
+        If the user does not seem to be holding anything, then return all false, and "Could Not Identify Item" for the desicription.'''
         ],
         config={
             "response_mime_type": "application/json",

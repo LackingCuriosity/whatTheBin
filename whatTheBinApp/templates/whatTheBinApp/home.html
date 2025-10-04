@@ -10,14 +10,31 @@
 </head>
 <body>
     {% csrf_token %}
+    <div id="titleDiv"> WHAT THE BIN?</div>
     <div id="mainDiv">
         <div id="cameraContainer">
             <video id="cameraBox" autoplay></video>
-            <canvas id="pictureBox" ></canvas>
+            <div id="actionBox">
+                <canvas id="pictureBox" ></canvas>
+                <button id="captureButton">What The Bin?</button>
+            </div>
         </div>
-        <button id="captureButton">Capture</button>
-
+        <div id="subDiv">
+            <div id="informationContainer">
+                <div id="isCompostable" class="binDiv">Compost Bin?</div>
+                <div id="isRecyclable" class="binDiv">Recycling Bin?</div>
+                <div id="isLandfill" class="binDiv">Landfill Bin?</div>
+            </div>
+            <div id="description" class="binDiv"></div>
+        </div>
+        <div id="helpDiv">Hold your item to the camera to know: What The Bin?</div>
     </div>
 
+    <div id="deocrationDivs">
+        <div class="decoDiv" id="deco0"></div>
+        <div class="decoDiv" id="deco1"></div>
+        <div class="decoDiv" id="deco2"></div>
+        <div class="decoDiv" id="deco3"></div>
+    </div>
 </body>
 </html>

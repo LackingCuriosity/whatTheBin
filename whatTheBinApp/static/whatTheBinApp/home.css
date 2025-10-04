@@ -1,21 +1,128 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
 #cameraBox, #pictureBox {
-    width: 25rem;
+    width: 50%;
     transform:rotateY(180deg);
     border: 2px solid darkgreen;
     border-radius: 10px;
     box-shadow: 0 0 2px 0px darkgreen inset, 0 0 2px 0px darkgreen;
 }
 
+#pictureBox {
+    width: 80%;
+    margin: auto;
+    opacity: 60%;
+}
+
 #cameraContainer {
+    display: flex;
     text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#actionBox {
+    padding-top: 40px;
+    width:100%;
+    height: 100%;
+    display: block;
+    justify-content: center;
 }
 
 #mainDiv {
     position: absolute;
-    top:50%;
+    top: 55%;
     left: 50%;
-    width: 40rem;
+    width: 60%;
     height: 40rem;
-    border: 1px solid black;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
+#informationContainer {
+    display: flex;
+    width: 100%;
+    height: 20pt;
+    justify-content: space-around;
+}
+
+.binDiv {
+    margin-top: 1rem;
+    width: 20%;
+    height: 20pt;
+}
+
+#description {
+    width: 80%;
+    height: 10rem;
+    background-color: #a7d930;
+    text-align: left;
+    margin:auto;
+    margin-top: 30px;
+}
+
+#captureButton {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 25%;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: greenyellow;
+    border-color: #95c22b
+}
+
+#titleDiv {
+    width:fit-content;
+    margin:auto;
+    font-size: 64pt;
+    text-align: center;
+    vertical-align: auto;
+    font-family: 'Courier New', Courier, monospace;
+    color: #507b00;
+    background-color: white;
+    border-radius: 16px;
+}
+
+#subDiv {
+    margin-top: 5px;
+    padding: 2px;
+    border: 1px solid darkgreen;
+    box-shadow: 0 0 2px 0px darkgreen inset, 0 0 2px 0px darkgreen;
+    background-color:#a7d930 ;  
+}
+
+#helpDiv {
+    text-align: center;
+    width: 100%;
+}
+
+.decoDiv {
+    position: absolute;
+}
+
+#deco0, #deco1, #deco2 {
+    border-radius: 100%;
+    background-color: #507b00;
+    height: 50rem;
+    width: 50rem;
+    z-index: -100;
+    top:-40%;
+    left: -30%;
+}
+
+#deco0 {
+    top:-40%;
+    left: -30%;
+}
+
+#deco1 {
+    top: 80%;
+    left: 70%;
+    
+}
+
