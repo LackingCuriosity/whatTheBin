@@ -14,14 +14,15 @@ document.addEventListener("DOMContentLoaded", e => {
         isLandfillDiv = document.getElementById("isLandfill")
         descriptionDiv = document.getElementById("description")
         captureButton.addEventListener('click', e => {
-            document.getElementById("helpDiv").style.display = "none"
+            for (loadingDiv of document.getElementsByClassName("loadingDiv")) {
+                loadingDiv.style.opacity = '100'
+            }
             pictureBox.style.display = "block"
             pictureBox.width = cameraDiv.videoWidth;
             pictureBox.height = cameraDiv.videoHeight;
 
             context.drawImage(cameraDiv, 0, 0, pictureBox.width, pictureBox.height)
             dataURL = pictureBox.toDataURL('image/png', 0.01)
-            console.log(dataURL)
             
             fetch("/api", {
                 method: 'POST',
@@ -32,9 +33,6 @@ document.addEventListener("DOMContentLoaded", e => {
             })
             .then (data => data.json())
             .then (data => {
-                console.log(data["isRecyclable"])
-                console.log(data["isCompostable"])
-                console.log(data["isLandfill"])
                 if (data["isRecyclable"]) {
                     isRecyclableDiv.style.color = "green"
                     isRecyclableDiv.innerHTML = "Recycling Bin: ✅"
@@ -64,6 +62,9 @@ document.addEventListener("DOMContentLoaded", e => {
 
                 descriptionDiv.innerHTML = data["description"]
 
+                for (element of document.getElementsByClassName("loadingDiv")) {
+                    element.style.opacity = '0'
+            }
             })
         })
     })
